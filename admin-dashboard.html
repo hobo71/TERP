@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Name</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="Resources/css/stylesheet.css" type="text/css">
+        <link rel="stylesheet" href="Resources/css/admin-dashboard.css" type="text/css">
+    </head>
+    <body>
+        <!-- NAVBAR-->
+        <nav class="navbar navbar-fixed-top navbar-inverse " data-spy="affix" data-options="scrolltop:false">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarLinks">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-brand" href="index.html">Company Name</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarLinks">
+                    <ul class="nav navbar-nav">
+                        <li ><a href="index.html" >Home</a></li>
+                        <li ><a href="articles.html">News</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Rental
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="cars.html">Automobiles</a></li>
+                                <li><a href="items.html">Touristic Equipment</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="rules.html">Rules</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" id="log_buttons_container"><li><a href="register.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> </ul>
+                    <script id="logged_user_template" type= "text/x-handlebars-template">
+<li><a href="continue.html"><span class="glyphicon glyphicon-user"></span>Your profile</a></li>
+<li><a href="logout.html"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                    </script>
+                </div>
+            </div>
+        </nav>
+        <!--END OF NAVBAR-->
+
+        <!--CONTENT-->
+        <div id = "content">
+            <h3 id ="site_header">Admin Dashboard</h3>
+
+            <div id="main_buttons_container">
+                <button type="button"  class="btn btn-default"   class="admin-buttons"  onclick="getBranches()">Branches</button>
+                <button type="button" class="btn btn-default"  onclick="getPositions()">Positions</button>
+                <button type="button" class="btn btn-default"  onclick="getCars()">Cars</button>
+                <button type="button" class="btn btn-default"   onclick="getItems()">Items</button>
+                <button type="button" class="btn btn-default"  onclick="getUsers()">Users</button>
+                <button type="button" class="btn btn-default"  onclick="getCustomers()">Customers</button>
+            </div>
+            <script id="branch_buttons_template" type= "text/x-handlebars-template">
+{{#each this}}
+<button type="button" id = "{{name}}_button" class="btn btn-default" onclick="getInfo('{{name}}')">{{city}}</button>
+{{/each}}
+            </script>
+            <script id="position_buttons_template" type= "text/x-handlebars-template">
+{{#each this}}
+<button type="button" id = "{{name}}_button" class="btn btn-default" onclick="getPosition({{this.id}})">{{this.name}}</button>
+{{/each}}
+            </script>
+            <div id="bonus_buttons_container">
+
+
+
+            </div>
+            <div id="table_container">
+
+
+
+
+
+
+            </div>
+            <div id="item_table_container">
+            </div>
+            <script id="branches_table_template" type= "text/x-handlebars-template">
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Country</th>
+            <th scope="col">City</th>
+            <th scope="col">Postal Code</th>
+            <th scope="col">Street</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Items</th>
+            <th scope="col">Cars</th>
+            <th scope="col">Users</th>
+            <th scope="col">Remove branch</th>
+
+                </tr>
+                </thead>
+    <tbody>
+        {{#each this}}
+        <tr>
+            <th scope="row">{{id}}</th>
+            <td>{{name}}</td>
+            <td>{{country}}</td>
+            <td>{{city}}</td>
+            <td>{{postal_code}}</td>
+            <td>{{street}}</td>
+            <td>{{email}}</td>
+            <td>{{phone}}</td>
+            <td><button type="button" id = "{{name}}_items_button" class="btn btn-default" onclick="getStuff({{id}},'items')">Items</button></td>
+            <td><button type="button" id = "{{name}}_cars_button" class="btn btn-default" onclick="getStuff({{id}},'cars')">Cars</button></td>
+            <td><button type="button" id = "{{name}}_users_button" class="btn btn-default" onclick="getStuff({{id}}, 'users')">Users</button></td>
+<!--            <td><button type="button"  class="btn btn-default" data-toggle="confirmation" data-popout="true" data-placement="bottom" id = "{{name}}_remove_button"  onclick="removeBranch('{{name}}')">DELETE</button></td>-->
+             <td><button type="button"  class="btn btn-default" data-toggle="confirmation" data-popout="true" data-placement="bottom" id = "{{name}}_remove_button"  onclick="setDeleteProperties('{{name}}', 'branch')">DELETE</button></td>
+                </tr>
+
+        {{/each}}
+                </tbody>
+                </table>
+            </script>
+
+            <script id="items_table_template" type= "text/x-handlebars-template">
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Available</th>
+            <th scope="col">Reserved By</th>
+            <th scope="col">Year</th>
+            <th scope="col">Item Type</th>
+            <th scope="col">Vendor</th>
+            <th scope="col">Model</th>
+            <th scope="col">Branch ID</th>
+
+                </tr>
+                </thead>
+    <tbody>
+        {{#each this}}
+
+        <tr>
+            <th scope="row">{{id}}</th>
+            <td>{{name}}</td>
+            <td>{{price}}</td>
+            <td>{{available}}</td>
+            <td>{{reserved_by}}</td>
+            <td>{{year}}</td>
+            <td>{{item_type}}</td>
+            <td>{{vendor}}</td>
+            <td>{{model}}</td>
+            <td>{{branch_id}}</td>
+<!--            <td><button type="button" id = "remove_item_{{id}}_button" class="btn btn-default" onclick="removeStuff('{{name}}','item', {{branch_id}})">DELETE</button></td>-->
+                      <td><button type="button"  class="btn btn-default" data-toggle="confirmation" data-popout="true" data-placement="bottom" id = "remove_item_{{id}}_button" onclick="setDeletePropertiesFotCarsOrItems('{{name}}','item', {{branch_id}})">DELETE</button></td>
+<!--            <td><button type="button"  class="btn btn-default" data-toggle="confirmation" data-popout="true" data-placement="bottom" id = "{{name}}_remove_button"  onclick="setDeleteProperties('{{name}}', 'branch')">DELETE</button></td>-->
+            
+            
+            
+            
+            
+            
+            {{#if reserved_by}}
+<!--            <td><button type="button" id = "remove_item_{{id}}_button" class="btn btn-default" onclick="cancelReservation({{id}}, {{branch_id}}, '{{name}}', 'item'); ">Cancel Reservation</button></td>-->
+              <td><button  class="btn btn-default" data-toggle="confirmation" data-popout="true" data-placement="bottom" id = "remove_item_{{id}}_button"  onclick="setCancelPropertiesForCarsOrItems({{id}}, {{branch_id}}, '{{name}}', 'item'); ">Cancel Reservation</button></td>
+            {{/if}}
+                </tr>
+
+        {{/each}}
+                </tbody>
+                </table>
+            </script>
+
+
+            <script id="cars_table_template" type= "text/x-handlebars-template">
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Available</th>
+            <th scope="col">Reserved By</th>
+            <th scope="col">Year</th>
+            <th scope="col">Car Type</th>
+            <th scope="col">Vendor</th>
+            <th scope="col">Model</th>
+            <th scope="col">Colour</th>
+            <th scope="col">Seats</th>
+            <th scope="col">Transmission</th>
+            <th scope="col">Drive</th>
+            <th scope="col">Fuel</th>
+            <th scope="col">Engine Power</th>
+            <th scope="col">Branch Id</th>
+
+                </tr>
+                </thead>
+    <tbody>
+        {{#each this}}
+
+        <tr>
+            <th scope="row">{{id}}</th>
+            <td>{{name}}</td>
+            <td>{{price}}</td>
+            <td>{{available}}</td>
+            <td>{{reserved_by}}</td>
+            <td>{{year}}</td>
+            <td>{{car_type}}</td>
+            <td>{{vendor}}</td>
+            <td>{{model}}</td>
+            <td>{{colour}}</td>
+            <td>{{seats}}</td>
+            <td>{{transmission}}</td>
+            <td>{{drive}}</td>
+            <td>{{fuel}}</td>
+            <td>{{engine_power}}</td>
+            <td>{{branch_id}}</td>
+            <td><button type="button"  class="btn btn-default" data-toggle="confirmation" data-popout="true" data-placement="bottom" id = "remove_car_{{id}}_button" onclick="setDeletePropertiesFotCarsOrItems('{{name}}','car', {{branch_id}})">DELETE</button></td>
+            {{#if reserved_by}}
+<!--            <td><button type="button" id = "remove_item_{{id}}_button" class="btn btn-default" onclick="cancelReservation({{id}}, {{branch_id}}, '{{name}}', 'car')">Cancel Reservation</button></td>-->
+            <td><button type="button"  class="btn btn-default" data-toggle="confirmation" data-popout="true" data-placement="bottom" id = "remove_item_{{id}}_button" onclick="setCancelPropertiesForCarsOrItems({{id}}, {{branch_id}}, '{{name}}', 'car')">Cancel Reservation</button></td>
+            {{/if}}
+
+                </tr>
+
+        {{/each}}
+                </tbody>
+                </table>
+            </script>
+
+            <script id="users_table_template" type= "text/x-handlebars-template">
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Username</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Country</th>
+            <th scope="col">City</th>
+            <th scope="col">Postal Code</th>
+            <th scope="col">Street</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Branch Id</th>
+            <th scope="col">Position Id</th>
+            <th scope="col">Salary</th>
+                </tr>
+                </thead>
+    <tbody>
+        {{#each this}}
+
+        <tr>
+            <th scope="row">{{id}}</th>
+            <td>{{username}}</td>
+            <td>{{first_name}}</td>
+            <td>{{last_name}}</td>
+            <td>{{country}}</td>
+            <td>{{city}}</td>
+            <td>{{postal_code}}</td>
+            <td>{{street}}</td>
+            <td>{{email}}</td>
+            <td>{{phone}}</td>
+            <td>{{branch_id}}</td>
+            <td>{{position_id}}</td>
+            <td>{{salary}}</td>
+            <td><button type="button"  class="btn btn-default" data-toggle="confirmation" data-popout="true" data-placement="bottom" id = "remove_user_{{id}}_button" onclick="removeUserConfirmation('{{username}}')">DELETE</button></td>
+
+                </tr>
+
+        {{/each}}
+                </tbody>
+                </table>
+            </script>
+
+            <script id="customers_table_template" type= "text/x-handlebars-template">
+<table class="table">
+    <thead>
+        <tr>
+            <!--                        <th scope="col">Id</th>-->
+            <th scope="col">Username</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+                </tr>
+                </thead>
+    <tbody>
+        {{#each this}}
+
+        <tr>
+            <!--            <th scope="row">{{id}}</th>-->
+            <td>{{username}}</td>
+            <td>{{first_name}}</td>
+            <td>{{last_name}}</td>
+            <td>{{email}}</td>
+            <td>{{phone}}</td>
+            <td><button type="button"  class="btn btn-default" data-toggle="confirmation" data-popout="true" data-placement="bottom" id = "remove_user_{{id}}_button"  onclick="removeCustomerConfirmation('{{username}}')">DELETE</button></td>
+
+                </tr>
+
+        {{/each}}
+                </tbody>
+                </table>
+            </script>
+
+            <script id="positions_table_template" type= "text/x-handlebars-template">
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Username</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Country</th>
+            <th scope="col">City</th>
+            <th scope="col">Postal Code</th>
+            <th scope="col">Street</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Branch Id</th>
+            <th scope="col">Position Id</th>
+            <th scope="col">Salary</th>
+                </tr>
+                </thead>
+    <tbody>
+        {{#each this}}
+
+        <tr>
+            <th scope="row">{{id}}</th>
+            <td>{{username}}</td>
+            <td>{{first_name}}</td>
+            <td>{{last_name}}</td>
+            <td>{{country}}</td>
+            <td>{{city}}</td>
+            <td>{{postal_code}}</td>
+            <td>{{street}}</td>
+            <td>{{email}}</td>
+            <td>{{phone}}</td>
+            <td>{{branch_id}}</td>
+            <td>{{position_id}}</td>
+            <td>{{salary}}</td>
+            <td><button type="button" id = "remove_user_{{id}}_button" class="btn btn-default" onclick="removeStuff('{{id}}','users')">DELETE</button></td>
+
+                </tr>
+
+        {{/each}}
+                </tbody>
+                </table>
+            </script>
+            
+            
+                        <script id="log_table_template" type= "text/x-handlebars-template">
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Action</th>
+            <th scope="col">Date</th>
+            <th scope="col">By who</th>
+            <th scope="col">Position</th>
+            </tr>
+                </thead>
+    <tbody>
+        {{#each this}}
+
+        <tr>
+            <th scope="row">{{id}}</th>
+            <td>{{action_name}}</td>
+            <td>{{action_date}}</td>
+            <td>{{action_creator}}</td>
+            <td>{{creator_role}}</td>
+        </tr>
+
+        {{/each}}
+                </tbody>
+                </table>
+            </script>
+            
+
+
+
+            <div id="stuff_add_buttons_container">
+                <button type="button" id="" class="btn btn-default" onclick="createForm('branch')">Add Branch</button>
+                <!--    <button type="button" id="" class="btn btn-default" onclick="window.location='registeruser.html'">Add User</button>-->
+                <button type="button" id="" class="btn btn-default" onclick="createForm('user')">Add User</button>
+                <button type="button" id="" class="btn btn-default" onclick="createForm('car')">Add Car</button>
+                <button type="button" id="" class="btn btn-default" onclick="createForm('item')">Add Item</button>
+            </div>
+
+            <script id="response_template" type= "text/x-handlebars-template">
+<h5 id="request_response">{{this}}</h5>
+            </script>   <div id="response_container" class="hidden">
+            </div>
+
+            <div  id="creation-form-container"  >
+
+
+
+                <!-- content -->
+
+
+                <!--            <script id="branch_creation_form_template" type= "text/x-handlebars-template">-->
+
+                <form role="form" id="branch_creation_form" class="hidden" autocomplete="off">
+                    <div class="form-header">
+                        <h3 class="form-title"><center>Branch Creation Form</center></h3>
+                    </div>
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                <input name="branch_creation_name" id ="branch_creation_name" type="text" class="form-control" placeholder="Branch name">
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="branch_creation_country" id="branch_creation_country" type="text" class="form-control" class ="country" placeholder="Country">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="branch_creation_city" id="branch_creation_city" type="text" class="form-control" class ="city" placeholder="City">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+
+                                <input  name="branch_creation_postal_code" id="branch_creation_postal_code" type="text" class="form-control" class ="postal_code" placeholder="Postal Code ex: 44-435">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-home"></span></div>
+
+                                <input  name="branch_creation_street" id="branch_creation_street" type="text" class="form-control" class ="street" placeholder="Street">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+
+                                <input name="branch_creation_email" id="branch_creation_email" type="text" class="form-control"  class ="email" placeholder="Email ex: name@example.com">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></div>
+
+                                <input  name="branch_creation_phone" id="branch_creation_phone" type="text" class="form-control" class ="phone" placeholder="Phone number ex: 555-555-555">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+
+
+
+
+                    </div>
+                    <div class="form-footer">
+                        <button id="create_branch_button" type="button" class="btn btn-default" class="btn btn-info" onclick="addBranch()">
+                            <span class="glyphicon glyphicon-log-in"></span> Add Branch
+                        </button>
+                    </div>
+                </form>
+                <!--            </script>-->
+
+                <!--       Car Creation            -->  
+                <!--            <script id="car_creation_form_template" type= "text/x-handlebars-template">-->
+
+                <form role="form" id="car_creation_form" class="hidden"  autocomplete="off">
+                    <div class="form-header">
+                        <h3 class="form-title"><center>Car Creation Form</center></h3>
+                    </div>
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_creation_name" id="car_creation_name" type="text" class="form-control" class ="name" placeholder="Car Name">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-usd"></span></div>
+
+                                <input  name="car_creation_price" id="car_creation_price" type="text" class="form-control" class ="price" placeholder="Price">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_creation_year" id="car_creation_year" type="text" class="form-control" class ="year" placeholder="Year">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_creation_car_type" id ="car_creation_car_type" type="text" class="form-control" placeholder="Car Type">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_creation_vendor" id="car_creation_vendor" type="text" class="form-control" class ="vendor" placeholder="Vendor">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_creation_model" id="car_creation_model" type="text" class="form-control" class ="model" placeholder="Model">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_creation_colour" id ="car_creation_colour" type="text" class="form-control" placeholder="Colour">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_creation_seats" id ="car_creation_seats" type="text" class="form-control" placeholder="Seats">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input name="car_creation_transmission" id ="car_creation_transmission"  type="text" class="form-control" placeholder="Transmission">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_creation_drive" id ="car_creation_drive" type="text" class="form-control" placeholder="Drive">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_creation_fuel" id ="car_creation_fuel" type="text" class="form-control" placeholder="Fuel">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_creation_engine_power" id ="car_creation_engine_power" type="text" class="form-control" placeholder="Engine Power">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_creation_branch_id" id="car_creation_branch_id" type="text" class="form-control" class ="branch_id" placeholder="Branch Id">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_creation_branch_name" id="car_creation_branch_name" type="text" class="form-control" class ="branch_name" placeholder="Branch name ex: gdansk">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="form-footer">
+                        <button id="create_car_button" type="button" class="btn btn-default" class="btn btn-info" onclick="addCar()">
+                            <span class="glyphicon glyphicon-log-in"></span> Add Car
+                        </button>
+                    </div>
+                </form>
+                <!--            </script>-->
+
+
+
+
+                <!--       Item Creation            -->  
+                <!--            <script id="item_creation_form_template" type= "text/x-handlebars-template">-->
+
+                <form role="form" id="item_creation_form" class="hidden"  autocomplete="off">
+                    <div class="form-header">
+                        <h3 class="form-title"><center>Item Creation Form</center></h3>
+                    </div>
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="item_creation_name" id="item_creation_name" type="text" class="form-control" class ="name" placeholder="Item name">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-usd"></span></div>
+
+                                <input  name="item_creation_price" id="item_creation_price" type="text" class="form-control" class ="price" placeholder="Price">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="item_creation_year" id="item_creation_year" type="text" class="form-control" class ="year" placeholder="Year">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input id ="item_creation_item_type" name="item_creation_item_type" id="item_creation_item_type" type="text" class="form-control" placeholder="Item Type">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input id ="item_creation_vendor" name="item_creation_vendor" type="text" class="form-control" placeholder="Vendor">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="item_creation_model" id="item_creation_model" type="text" class="form-control" class ="model" placeholder="Model">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="item_creation_branch_id" id="item_creation_branch_id" type="text" class="form-control" class ="branch_id" placeholder="Branch Id">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="item_creation_branch_name" id="item_creation_branch_name" type="text" class="form-control" class ="branch_name" placeholder="Branch Name">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="form-footer">
+                        <button id="create_item_button" type="button" class="btn btn-default" class="btn btn-info" onclick="addItem()">
+                            <span class="glyphicon glyphicon-log-in"></span> Add Item
+                        </button>
+                    </div>
+                </form>
+                <!--            </script>-->
+
+
+                <!--            <script id="user_creation_form_template" type= "text/x-handlebars-template">-->
+
+                <form role="form" id="user_creation_form" class="hidden" autocomplete="off">
+                    <div class="form-header">
+                        <h3 class="form-title">Create user</h3>
+                    </div>
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                <input  name="user_creation_name" id="user_creation_name" type="text" class="form-control" class ="name" placeholder="Username">
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                                    <input name="user_creation_password" id="user_creation_password" type="password" class="form-control" placeholder="Password">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                                    <input name="user_creation_cpassword" id="user_creation_cpassword" type="password" class="form-control" placeholder="Retype Password">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+                                    <input name="user_creation_first_name" id="user_creation_first_name" type="text" class="form-control" placeholder="First Name">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+                                    <input name="user_creation_last_name" id="user_creation_last_name" type="text" class="form-control" placeholder="Last name">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+                                    <input name="user_creation_country" id="user_creation_country" type="text"  class="form-control" class="country" placeholder="Country">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+                                    <input name="user_creation_postal_code" id="user_creation_postal_code" type="text" class="form-control" class="postal_code" placeholder="Postal Code">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-12">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-home"></span></div>
+                                    <input name="user_creation_city" id="user_creation_city"  type="text" class="form-control" class="city" placeholder="City">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div></div>
+
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-home"></span></div>
+                                    <input name="user_creation_street" id="user_creation_street" type="text" class="form-control" class="street" placeholder="Street">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+                                    <input name="user_creation_email" id="user_creation_email" type="text" class="form-control" class="email"  placeholder="E-mail adress">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></div>
+                                    <input name="user_creation_phone" id="user_creation_phone" type="text" class="form-control" class="phone" placeholder="Phone number ex: 555-555-555">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+                                    <input name="user_creation_branch_id" id="user_creation_branch_id"  type="text" class="form-control" class="branch_id" placeholder="Your branch id">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+                                    <input name="user_creation_position_id" id="user_creation_position_id" type="text" class="form-control" placeholder="Position id">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+                                    <input name="user_creation_salary" id="user_creation_salary" type="text" class="form-control" placeholder="Salary">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-footer">
+                        <button type="button" id="register_button" class="btn btn-default" onclick="createUser()">
+                            <span class="glyphicon glyphicon-log-in"></span> Add User
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            
+            
+            
+            
+             <div id="stuff_add_buttons_container">
+                <button type="button" id="" class="btn btn-default" onclick="updateForm('branch')">Update Branch</button>
+                <!--    <button type="button" id="" class="btn btn-default" onclick="window.location='registeruser.html'">Add User</button>-->
+                <button type="button" id="" class="btn btn-default" onclick="updateForm('user')">Update User</button>
+                <button type="button" id="" class="btn btn-default" onclick="updateForm('car')">Update Car</button>
+                <button type="button" id="" class="btn btn-default" onclick="updateForm('item')">Update Item</button>
+            </div>
+
+
+
+            <div  id="update-form-container"  >
+            
+            <!-- USER UPDATE FORM -->
+              <form role="form" id="user_update_form" class="hidden" autocomplete="off">
+                    <div class="form-header">
+                        <h3 class="form-title">Update user</h3>
+                    </div>
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                <input  name="user_update_name" id="user_update_name" type="text" class="form-control" class ="name" placeholder="Username">
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                                    <input name="user_update_password" id="user_update_password" type="password" class="form-control" placeholder="Password">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                                    <input name="user_update_cpassword" id="user_update_cpassword" type="password" class="form-control" placeholder="Retype Password">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+                                    <input name="user_update_first_name" id="user_update_first_name" type="text" class="form-control" placeholder="First Name">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+                                    <input name="user_update_last_name" id="user_update_last_name" type="text" class="form-control" placeholder="Last name">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+                                    <input name="user_update_country" id="user_update_country" type="text"  class="form-control" class="country" placeholder="Country">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+                                    <input name="user_update_postal_code" id="user_update_postal_code" type="text" class="form-control" class="postal_code" placeholder="Postal Code">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-12">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-home"></span></div>
+                                    <input name="user_update_city" id="user_update_city"  type="text" class="form-control" class="city" placeholder="City">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div></div>
+
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-home"></span></div>
+                                    <input name="user_update_street" id="user_update_street" type="text" class="form-control" class="street" placeholder="Street">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+                                    <input name="user_update_email" id="user_update_email" type="text" class="form-control" class="email"  placeholder="E-mail adress">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></div>
+                                    <input name="user_update_phone" id="user_update_phone" type="text" class="form-control" class="phone" placeholder="Phone number ex: 555-555-555">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+                                    <input name="user_update_branch_id" id="user_update_branch_id"  type="text" class="form-control" class="branch_id" placeholder="Your branch id">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+                                    <input name="user_update_position_id" id="user_update_position_id" type="text" class="form-control" placeholder="Position id">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+                                    <input name="user_update_salary" id="user_update_salary" type="text" class="form-control" placeholder="Salary">
+                                </div>  
+                                <span class="help-block" id="error"></span>                    
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-footer">
+                        <button type="button" id="user_update_button" class="btn btn-default" onclick="updateUser()">
+                            <span class="glyphicon glyphicon-log-in"></span> Update User
+                        </button>
+                    </div>
+                </form>
+            
+            
+            <!-- BRANCH UPDATE FORM -->
+               
+            <form role="form" id="branch_update_form" class="hidden" autocomplete="off">
+                    <div class="form-header">
+                        <h3 class="form-title"><center>Branch Update Form</center></h3>
+                    </div>
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                <input name="branch_update_name" id ="branch_update_name" type="text" class="form-control" placeholder="Branch name">
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="branch_update_country" id="branch_update_country" type="text" class="form-control" class ="country" placeholder="Country">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="branch_update_city" id="branch_update_city" type="text" class="form-control" class ="city" placeholder="City">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+
+                                <input  name="branch_update_postal_code" id="branch_update_postal_code" type="text" class="form-control" class ="postal_code" placeholder="Postal Code ex: 44-435">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-home"></span></div>
+
+                                <input  name="branch_update_street" id="branch_update_street" type="text" class="form-control" class ="street" placeholder="Street">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+
+                                <input name="branch_update_email" id="branch_update_email" type="text" class="form-control"  class ="email" placeholder="Email ex: name@example.com">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></div>
+
+                                <input  name="branch_update_phone" id="branch_update_phone" type="text" class="form-control" class ="phone" placeholder="Phone number ex: 555-555-555">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+
+
+
+
+                    </div>
+                    <div class="form-footer">
+                        <button id="branch_update_button" type="button" class="btn btn-default" class="btn btn-info" onclick="updateBranch()">
+                            <span class="glyphicon glyphicon-log-in"></span> Update Branch
+                        </button>
+                    </div>
+                </form>
+            
+            
+            
+            <!-- CAR UPDATE FORM -->
+                <form role="form" id="car_update_form" class="hidden"  autocomplete="off">
+                    <div class="form-header">
+                        <h3 class="form-title"><center>Car Update Form</center></h3>
+                    </div>
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_update_name" id="car_update_name" type="text" class="form-control" class ="name" placeholder="Car Name">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-usd"></span></div>
+
+                                <input  name="car_update_price" id="car_update_price" type="text" class="form-control" class ="price" placeholder="Price">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_update_year" id="car_update_year" type="text" class="form-control" class ="year" placeholder="Year">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_update_car_type" id ="car_update_car_type" type="text" class="form-control" placeholder="Car Type">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_update_vendor" id="car_update_vendor" type="text" class="form-control" class ="vendor" placeholder="Vendor">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_update_model" id="car_update_model" type="text" class="form-control" class ="model" placeholder="Model">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_update_colour" id ="car_update_colour" type="text" class="form-control" placeholder="Colour">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_update_seats" id ="car_update_seats" type="text" class="form-control" placeholder="Seats">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input name="car_update_transmission" id ="car_update_transmission"  type="text" class="form-control" placeholder="Transmission">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_update_drive" id ="car_update_drive" type="text" class="form-control" placeholder="Drive">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_update_fuel" id ="car_update_fuel" type="text" class="form-control" placeholder="Fuel">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_update_engine_power" id ="car_update_engine_power" type="text" class="form-control" placeholder="Engine Power">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_update_branch_id" id="car_update_branch_id" type="text" class="form-control" class ="branch_id" placeholder="Branch Id">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="car_update_branch_name" id="car_update_branch_name" type="text" class="form-control" class ="branch_name" placeholder="Branch name ex: gdansk">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="form-footer">
+                        <button id="car_update_button" type="button" class="btn btn-default" class="btn btn-info" onclick="updateCar()">
+                            <span class="glyphicon glyphicon-log-in"></span> Update  Car
+                        </button>
+                    </div>
+                </form>
+            
+            
+            <!-- ITEM UPDATE FORM -->
+                 <form role="form" id="item_update_form" class="hidden"  autocomplete="off">
+                    <div class="form-header">
+                        <h3 class="form-title"><center>Item Update Form</center></h3>
+                    </div>
+                    <div class="form-body">
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="item_update_name" id="item_update_name" type="text" class="form-control" class ="name" placeholder="Item name">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-usd"></span></div>
+
+                                <input  name="item_update_price" id="item_update_price" type="text" class="form-control" class ="price" placeholder="Price">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="item_update_year" id="item_update_year" type="text" class="form-control" class ="year" placeholder="Year">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input id ="item_update_item_type" name="item_update_item_type" type="text" class="form-control" placeholder="Item Type">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input id ="item_update_vendor" name="item_update_vendor" type="text" class="form-control" placeholder="Vendor">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="item_update_model" id="item_update_model" type="text" class="form-control" class ="model" placeholder="Model">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="item_update_branch_id" id="item_update_branch_id" type="text" class="form-control" class ="branch_id" placeholder="Branch Id">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group">
+
+
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+
+                                <input  name="item_update_branch_name" id="item_update_branch_name" type="text" class="form-control" class ="branch_name" placeholder="Branch Name">
+
+
+                            </div>
+                            <span class="help-block" id="error"></span>
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="form-footer">
+                        <button id="item_update_button" type="button" class="btn btn-default" class="btn btn-info" onclick="updateItem()">
+                            <span class="glyphicon glyphicon-log-in"></span> Update Item
+                        </button>
+                    </div>
+                </form>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+               <div id="get_logs_buttons_container">
+                <button type="button" id="get_logs_button" class="btn btn-default" onclick="getLogs()">Show logs</button>
+                     <div id="log_table_container">
+            </div>
+            </div>
+          
+            </div>
+
+            <!--            </script>-->
+
+
+            <!--END OF CONTENT-->
+     
+
+
+        <!--END OF FOOTER-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-confirmation/1.0.7/bootstrap-confirmation.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+        <script type='text/javascript' src="Resources/JavaScript/handlebars-v4.0.11.js"></script>
+        <script type='text/javascript' src="Resources/JavaScript/main.js"></script>
+        <script type='text/javascript' src="Resources/JavaScript/admin.js"></script>
+        <script type='text/javascript' src="Resources/JavaScript/admin-validate.js"></script>
+        <script type='text/javascript' src="Resources/JavaScript/admin-get.js"></script>
+        <script type='text/javascript' src="Resources/JavaScript/admin-delete.js"></script>
+        <script type='text/javascript' src="Resources/JavaScript/admin-add.js"></script>
+        <script type='text/javascript' src="Resources/JavaScript/admin-update.js"></script>
+
+<!--                   <script type='text/javascript' src="https://unpkg.com/@divantespzoo/jquery-validation-polish/dist/jquery.validation.polish.js"></script>-->
+    </body>
+</html>

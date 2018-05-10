@@ -1,0 +1,125 @@
+body{
+
+    background-image:url('../images/background.png');
+}
+#site_header{
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding-top: 50px;
+    text-align: center;
+    background-color: #f2f2f2;
+    width: 100%;
+    padding-bottom: 10px;
+    max-width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    -webkit-animation-name: headerArrival;  /* Safari, Chrome and Opera > 12.1 */
+    -webkit-animation-duration: 1.5s;       /* Safari, Chrome and Opera > 12.1 */  
+    -webkit-animation-fill-mode: forwards;  /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation-name: headerArrival;;    /* Firefox < 16 */      
+    -moz-animation-duration: 1.5s;          /* Firefox < 16 */      
+    -moz-animation-fill-mode: forwards;     /* Firefox < 16 */      
+    -ms-animation-name: headerArrival;      /* Internet Explorer */
+    -ms-animation-duration: 1.5s;           /* Internet Explorer */
+    -ms-animation-fill-mode: forwards;      /* Internet Explorer */
+    -o-animation-name: headerArrival;       /* Opera < 12.1 */
+    -o-animation-duration: 1.5s;            /* Opera < 12.1 */
+    -o-animation-fill-mode: forwards;       /* Opera < 12.1 */
+    animation-name: headerArrival;
+    animation-duration: 1.5s;    
+    animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes headerArrival {
+    from {top: -50px;}
+    to {top: 10px;}
+}
+@-moz-keyframes headerArrival {
+    from {top: -50px;}
+    to {top: 10px;}
+}
+@-ms-keyframes headerArrival {
+    from {top: -50px;}
+    to {top: 10px;}
+}
+@-o-keyframes headerArrival {
+    from {top: -50px;}
+    to {top: 10px;}
+}
+@keyframes headerArrival {
+    from {top: -50px;}
+    to {top: 10px;}
+}
+#content{
+    max-width: 1440px;
+    margin: 0 auto !important;
+    float: none !important;
+}
+
+#navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+    margin: 0 auto;
+}
+
+#LoginButton{
+    margin-top: 7px;
+    color : white;
+    background-color: black;
+    border-width: 1px;
+    border-color : grey;
+}
+#SubmitButton{
+    background-color: black;
+
+}
+.modal-content{
+    margin-top: 300px;
+}
+
+.affix {
+    width: 100%;
+    z-index: 9999 !important;
+}
+
+.affix + .container-fluid {
+    padding-top: 70px;
+}
+
+
+/*Footer*/
+footer {
+    padding: 25px;
+    text-align: center;
+    bottom: 0px;
+    width: 100%;
+    clear: both;
+}
+
+footer table th{
+    width: 33%;
+    margin-top: -5em;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+footer table td {
+    text-align: center;
+}
+footer table td p{
+    line-height: 75%;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    margin: 0 0 15px;
+    font-weight: 700;
+}
+
+a {
+    transition: 0.3s;
+    color: #333;
+}
+a:hover { text-decoration: none }

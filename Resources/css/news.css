@@ -1,0 +1,139 @@
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+    /*    max-width: 1440px;*/
+    margin: 0 auto;
+}
+#content{
+    max-width: 1440px;
+    padding-top: 55px;
+/*    margin: 0 auto !important;*/
+/*    float: none !important;*/
+    width: 80%;
+}
+
+
+.affix + .container-fluid {
+    padding-top: 70px;
+}
+
+.article-container{
+    overflow: overlay;
+    margin-top:1em;
+    border: solid 1px black;
+    position:relative;
+ width: 100%;
+    height: 20em;
+     clear: both;
+    position: relative;
+border: 1px solid black;
+    background-color:#d9d9d9;
+    padding:0.1em;
+    border-radius: 25px
+    
+}
+.article-header-container{
+    text-align:center;
+/*    width: 99%;*/
+/*     border-radius: 25px;*/
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+        position: relative;
+
+/*    height: 15%;*/
+    margin: 0.3em;
+    background-color: dimgray;
+}
+.article-image-container{
+   margin-top:1em;
+   margin-left:0.4em;
+   margin-right:1em;
+    width:20%;
+    float:left;
+    height: 50%;
+/*    background-color: ; */
+        position: relative;
+
+    border-radius: 15px;
+}
+.article-image-container img{
+    height:100%;
+    width:100%;
+/*    border-radius: 15px;*/
+        position: relative;
+
+}
+
+.article-body-container{
+     width: 100%;
+/*    border-radius: 15px;*/
+/*    border: solid 1px black;*/
+       margin-top:1em;
+    margin-right: 0.2em;
+/*    float:right;*/
+    position: absolute;
+    right:0.4em;
+    height: 60%;
+/*    background-color: pink;*/
+        position: relative;
+
+}
+
+
+footer {
+    height: 200px;
+    background-color: #f2f2f2;
+    padding: 25px;
+    text-align: center;
+
+}
+
+
+#ArticleImage{
+/*    float: left;*/
+/*    padding : 7px;*/
+    
+}
+@media (max-width:920px){
+    .article-image-container{
+        border-radius: 15px;
+/*   margin-right:2em;*/
+/*        position: relative;*/
+        float: none;
+/*    float:left;*/
+        width:15em;
+/*        max-width:100%;*/
+/*         top:0;*/
+/*        margin: auto;*/
+        
+    background-color: black;
+        margin: auto;
+/*                display:none;*/
+
+}
+    .article-container{
+        align-content: center;
+        
+        
+    }
+    .article-image{
+        position: relative;
+        top:0;
+        margin: auto;
+        border-radius: 15px;
+        
+/*                display:none;*/
+
+    }
+    .article-body-container{
+        float:none;
+        width: 96%;
+        margin-left: auto;
+        margin-right: auto;
+        
+        text-align: center
+    }
+    .article-author-container{
+        margin-top: ;
+        bottom:0;
+}

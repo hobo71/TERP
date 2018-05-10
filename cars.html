@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Name</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="Resources/css/stylesheet.css" type="text/css">
+        <link rel="stylesheet" href="Resources/css/cars.css" type="text/css">
+        <link rel="stylesheet" href="Resources/css/car_items.css" type="text/css">
+    </head>
+    <body>
+        <!-- NAVBAR-->
+        <nav class="navbar navbar-fixed-top navbar-inverse " data-spy="affix" data-options="scrolltop:false">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarLinks">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-brand" href="index.html">Company Name</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarLinks">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="articles.html">News</a></li>
+                        <li class="active" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Rental
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="cars.html">Automobiles</a></li>
+                                <li><a href="items.html">Touristic Equipment</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="rules.html">Rules</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" id="log_buttons_container"><li><a href="register.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> </ul>
+                    <script id="logged_user_template" type= "text/x-handlebars-template">
+<li><a href="continue.html"><span class="glyphicon glyphicon-user"></span>Your profile</a></li>
+<li><a href="logout.html"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                    </script>
+                </div>
+            </div>
+        </nav>
+        <!--END OF NAVBAR-->
+        <h3 id ="site_header">Choose a city to see what's currently available!</h3>
+
+        <!--CONTENT-->
+        <div id = "content">
+            <div id = "cars_content">
+                <div id = "city_background_image" ><img id="city_image" src="Resources/images/gdansk.jpg" alt="View of chosen city"></div>
+                <div class="container-fluid">
+                    <div id="city_buttons">
+                        <!--
+<script id="city_buttons_template" type= "text/x-handlebars-template">
+{{#each this}}
+<button type="button" id = "{{city}}_button" class="btn btn-default" onmouseover="pictureChange('{{city}}')" onclick="getAvailableCars('{{city}}')">{{city}}</button>
+{{/each}}
+</script>
+-->
+                        <button type="button" id = "gdansk" class="btn btn-default" onmouseover="pictureChange('gdansk')" onclick="getAvailableCars('gdansk'); setCity('gdansk');searchWeather('Gdansk')">Gdansk</button>
+                        <button type="button" id = "krakow" class="btn btn-default" onmouseover="pictureChange('cracow')" onclick="getAvailableCars('krakow'); setCity('krakow');searchWeather('Cracow')">Cracow</button>
+                        <button type="button" id = "praga" class="btn btn-default" onmouseover="pictureChange('prague')" onclick="getAvailableCars('praga'); setCity('praga');searchWeather('Prague')">Prague</button>
+                        <!--
+<button type="button" id = "cracow" class="btn btn-default" onmouseover="pictureChange('cracow')" onclick="getAvailableCars('cracow'); setCity('cracow')>Cracow</button>
+<button type="button" id = "prague" class="btn btn-default" onmouseover="pictureChange('prague')" onclick="getAvailableCars('prague'); setCity('prague')">Prague</button></div>
+-->
+                    </div>
+                </div>  
+
+                <div class="container-fluid" id="weather_app">
+
+                    <!--                    <div id="search">-->
+                    <!--        <label for="city">City Name</label>-->
+                    <!--        <input type="text" id="city">-->
+                    <!--        <button type="button">Show Weather!</button>-->
+                    <div id="load">Loading...</div>
+                    <div id="weather">
+                        <!--        <h1>Current weather</h1>-->
+                        <h1 id="weatherCity">City Name</h1>
+
+                        <div id="weatherDescription">Weather Description</div>
+                        <div id="weatherTemperature">Temperature</div>
+
+                    </div>
+                </div>
+
+
+
+
+                <!--PLACE WHERE CARS WILL GO-->
+
+                <ul id = "cars_container">
+                </ul>
+
+                <!--TEMPLATE FOR CARS-->
+
+                <script id="cars_template" type= "text/x-handlebars-template">
+                    <ul class="list-unstyled" class="car-list">
+                        <center><h4>If the item You are interested in is tagged as unavailable, contact us for more information.</h4></center>
+                        {{#each this}}
+                            {{#if this.available}}
+                                <li class ="car-list-element">
+                                    <h3 class="car-name"><a href="#">{{vendor}} {{model}}</a></h3>      
+                                    <div class = "rent_button">
+                                        <button type="button" class="btn btn-default" data-toggle="confirmation" data-popout="true"
+                                                data-placement="bottom" id="{{name}}" onclick="setId(this.id)">Rent</button> </div>    
+                                    <img class = "car-picture" src="Resources/images/cars_and_items/{{name}}.png" alt="Picture of {{vendor}} {{model}}">
+                                    <ul class= "car-info-list">
+                                        <li><strong>Car make and model:</strong> {{vendor}} {{model}}</li>
+                                        <li><strong>Price/day:</strong> {{price}}</li>
+                                        <li><strong>Transmission:</strong>  {{transmission}}</li>
+                                        <li><strong>Drive:</strong> {{drive}}</li>
+                                    </ul>
+                                </li>
+                            {{/if}}
+                        {{/each}}
+                        {{#each this}}
+                            {{#unless this.available}}
+                            <li class ="car-list-element">
+                                <h3 class="car-name"><a href="#"> {{vendor}} {{model}}<br><span>(Currently unavailable)</span></a></h3>      
+                                <img class = "car-picture" src="Resources/images/cars_and_items/{{name}}.png" alt="Picture of {{vendor}} {{model}}">
+                                <ul class= "car-info-list">
+                                    <li><strong>Car make and model:</strong> {{vendor}} {{model}}</li>
+                                    <li><strong>Price/day:</strong> {{price}}</li>
+                                    <li><strong>Transmission:</strong>  {{transmission}}</li>
+                                    <li><strong>Drive:</strong> {{drive}}</li>
+                                            </ul>
+                                            </li>
+                            {{/unless}}
+                        {{/each}}
+                    </ul>
+                </script>
+
+
+
+            </div>
+            <!--END OF CONTENT-->
+
+
+
+            <!--FOOTER-->
+            <footer class="container-fluid">
+                <div class = "row">
+                    <table id = "footer_table" class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"><a href="contact.html">Contact</a></th>
+                                <th scope="col">Opening Hours</th>
+                                <th scope="col">Information</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <p>Company Name</p>
+                                    <p>SomeStreet 15</p>
+                                    <p>10-100 Gdańsk</p>
+                                    <p>Poland</p>
+                                    <p>(48)555-555-555</p>
+                                    <p>contactmail@mail.com</p>
+                                </td>
+                                <td>
+                                    <p>All spots are open from</p>
+                                    <p>8:00 - 16:00</p>
+                                    <p>Local time</p>
+                                </td>
+                                <td>
+                                    <p><a href = "rules.html">Rules and Regulations</a></p>
+                                    <p><a href = "faq.html">Frequently Asked Questions</a></p>
+                                    <p><a href = "contact.html">Contact Form</a></p>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </footer>
+
+            <!--END OF FOOTER-->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-confirmation/1.0.7/bootstrap-confirmation.js"></script>
+            <script type='text/javascript' src="Resources/JavaScript/handlebars-v4.0.11.js"></script>
+            <script type='text/javascript' src="Resources/JavaScript/main.js"></script>
+            <script src="Resources/JavaScript/cars_items.js"></script>
+            <script src="Resources/JavaScript/cars.js"></script>
+            <script src="Resources/JavaScript/rentcar.js"></script>
+            <script src="Resources/JavaScript/init.js"></script>
+            <script src="Resources/JavaScript/weather-data.js"></script>
+            <script src="Resources/JavaScript/app.js"></script>
+
+
+            </body>
+        </html>
+

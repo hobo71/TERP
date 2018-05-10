@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Name</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="Resources/css/stylesheet.css" type="text/css">
+        <link rel="stylesheet" href="Resources/css/login.css" type="text/css">
+        <link rel="stylesheet" href="Resources/css/userlogin.css" type="text/css">
+    </head>
+    <body>
+        <!-- NAVBAR-->
+        <nav class="navbar sticky-top navbar-inverse" data-spy="affix" data-options="scrolltop:false">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarLinks">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-brand" href="index.html">Company Name</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarLinks">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="articles.html">News</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Rental
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="cars.html">Automobiles</a></li>
+                                <li><a href="items.html">Touristic Equipment</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="rules.html">Rules</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="register.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!--END OF NAVBAR-->
+
+        <!--CONTENT-->
+        <div class="container">
+            <h3 id ="site_header">Select Your role and then log in!</h3>
+            <div id="login_content">
+                <div class="signup-form-container">
+                    <!-- form start -->
+                    <form role="form" id="login-form" autocomplete="off">
+                        <div class="form-header">
+                            <h3 class="form-title">Log In</h3>
+                        </div>
+                        <div class="form-body">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                    <input name="name" id="name" type="text" class="form-control" placeholder="Username">
+                                </div>
+                                <span class="help-block" id="error"></span>
+                            </div>
+<!--
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+                                    <input name="email" type="text" class="form-control" placeholder="Email">
+                                </div> 
+                                <span class="help-block" id="error"></span>                     
+                            </div>
+-->
+                            <div class="row">
+                                <div class="form-group col-lg-12">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+                                        <input name="password" id="password" type="password" class="form-control" placeholder="Password">
+                                    </div>  
+                                    <span class="help-block" id="error"></span>                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-footer">
+                            <button id="login_submit" type="submit" class="btn btn-default" class="btn btn-info" onclick="userLogin()">
+                                <span class="glyphicon glyphicon-log-in"></span> Log In
+                            </button>
+                            <div id ="reset_password">Forgot Your Credentials? <button type="button" id = "reset_password_button" onclick="location.href='#';" class="btn btn-default" ><span class="glyphicon glyphicon-remove-sign" pull="right"></span> Reset password</button></div>
+                        </div>
+                    </form>
+                </div>
+                <div id = "additional_information_container">
+<div class="dropdown">
+  <button class="dropbtn" class="btn btn-default" id="role_button">Choose a role</button>
+  <div class="dropdown-content">
+    <a href="#" onclick="getRole('Admin')">Admin</a>
+    <a href="#" onclick="getRole('Manager')">Manager</a>
+    <a href="#" onclick="getRole('Worker')">Regular worker</a>
+  </div>
+</div>
+                    
+<!--
+                    <h5>Don't have an account yet? </h5>
+                    <button type="button" id = "login_button" onclick="location.href='login.html';" class="btn btn-default" ><span class="glyphicon glyphicon-log-in"></span> Register</button>
+                    <h5 id="need_help">Need some help?</h5>
+                    <button type="button" id="contact_button" onclick="location.href='contact.html';" class="btn btn-default" ><span class="glyphicon glyphicon-envelope"></span> Contact Us</button>
+                    <p id="faq_section"><strong>Or take a look at our<br> Frequently Asked Questions section.</strong></p>
+                    <button type="button" id="faq_button"  onclick="location.href='faq.html';" class="btn btn-default" ><span class="glyphicon glyphicon-book"></span>  FAQ</button>
+-->
+                </div>
+            </div> 
+        </div>
+        <!--END OF CONTENT-->
+
+        <!--FOOTER-->
+        <footer class="container-fluid">
+            <div class = "row">
+                <table id = "footer_table" class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"><a href="contact.html">Contact</a></th>
+                            <th scope="col">Opening Hours</th>
+                            <th scope="col">Information</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>Company Name</p>
+                                <p>SomeStreet 15</p>
+                                <p>10-100 Gdańsk</p>
+                                <p>Poland</p>
+                                <p>(48)555-555-555</p>
+                                <p>contactmail@mail.com</p>
+                            </td>
+                            <td>
+                                <p>All spots are open from</p>
+                                <p>8:00 - 16:00</p>
+                                <p>Local time</p>
+                            </td>
+                            <td>
+                                <p><a href = "rules.html">Rules and Regulations</a></p>
+                                <p><a href = "faq.html">Frequently Asked Questions</a></p>
+                                <p><a href = "contact.html">Contact Form</a></p>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </footer>
+
+        <!--END OF FOOTER-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="/Resources/JavaScript/handlebars-v4.0.11.js"></script>
+        <script src="Resources/JavaScript/main.js"></script>
+<!--        <script src="Resources/JavaScript/login.js"></script>-->
+        <script src="Resources/JavaScript/userlogin.js"></script>
+    </body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Name</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="Resources/css/stylesheet.css" type="text/css">
+        <link rel="stylesheet" href="Resources/css/faq.css" type="text/css">
+    </head>
+    <body>
+        <!-- NAVBAR-->
+        <nav class="navbar navbar-fixed-top navbar-inverse " data-spy="affix" data-options="scrolltop:false">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarLinks">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-brand" href="index.html">Company Name</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarLinks">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="articles.html">News</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Rental
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="cars.html">Automobiles</a></li>
+                                <li><a href="items.html">Touristic Equipment</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="rules.html">Rules</a></li>
+                        <li class="active"><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" id="log_buttons_container"><li><a href="register.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> </ul>
+                    <script id="logged_user_template" type= "text/x-handlebars-template">
+    <li><a href="continue.html"><span class="glyphicon glyphicon-user"></span>Your profile</a></li>
+    <li><a href="logout.html"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+        </script>
+                </div>
+            </div>
+        </nav>
+        <!--END OF NAVBAR-->
+        <h3 id ="site_header">Frequently Asked Questions</h3> 
+        <!--CONTENT-->
+        <div class="container -fluid ">
+            <div id="faq_content">
+            </div>
+            <div class="panel-group" id="faqAccordion">
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question0">
+                        <h4 class="panel-title">
+                            <a href="#" class="question">Will you pick me up</a>
+                        </h4>
+
+                    </div>
+                    <div id="question0" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>Yes, our free pick-up service is available at non-airport locations and during normal business hours. To schedule your pick up time or make additional arrangements, please call you local rental office directly. Once picked up and back at the office, a friendly rental representative will complete your paper work and have you on the road in no time. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question1">
+                        <h4 class="panel-title">
+                            <a href="#" class="question">How do I change or cancel my reservation?</a>
+                        </h4>
+
+                    </div>
+                    <div id="question1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p> If you have already picked up your vehicle:
+
+If you have already picked up your vehicle and wish to keep it longer; you must contact the location where you picked up the vehicle.
+
+If you have not picked up your vehicle:
+
+If you have not picked up your vehicle you can view, modify, or cancel your reservation by clicking here. When visiting this page, you will need to make sure all fields are filled out. If you fail to enter in your confirmation number, first name, and last name -- the reservation will not be found. If you have entered in all this information correctly and still cannot modify your reservation, please contact us.
+
+If you modify your pick-up or drop-off location, date or time, this may result in a change to your rates, taxes, surcharges, or underage fees. Please see your new rate quote when you verify your reservation
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question2">
+                        <h4 class="panel-title">
+                            <a href="#" class="question">I just had an accident and I need a car while my vehicle is being repaired. What do I do?</a>
+                        </h4>
+
+                    </div>
+                    <div id="question2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p> If you have rental reimbursement coverage through your insurance provider, your policy may cover rental costs while your vehicle is in the shop. Reach out to your agent or the insurance claims department for details.
+
+If you do not have coverage or will not be filing a claim, you may take advantage of Enterprise’s low rates. Learn more about the rental process after an accident.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question3">
+                        <h4 class="panel-title">
+                            <a href="#" class="question">Can I return my rental vehicle if the closest branch is closed?</a>
+                        </h4>
+
+                    </div>
+                    <div id="question3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p> If you have rental reimbursement coverage through your insurance provider, your policy may cover rental costs while your vehicle is in the shop. Reach out to your agent or the insurance claims department for details.
+
+If you do not have coverage or will not be filing a claim, you may take advantage of Enterprise’s low rates. Learn more about the rental process after an accident.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question4">
+                        <h4 class="panel-title">
+                            <a href="#" class="question">I would like to keep my rental vehicle for a few days longer; is that possible?</a>
+                        </h4>
+
+                    </div>
+                    <div id="question4" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p> Yes! In order to get you in the right direction and to make sure your rental is extended correctly, please refer to your rental location.
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question5">
+                        <h4 class="panel-title">
+                            <a href="#" class="question">Can I pay for the rental of a car for another individual?</a>
+                        </h4>
+
+                    </div>
+                    <div id="question5" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p> The renter of the vehicle must be present to sign the rental agreement and provide their credit card at the time of pick up. The renter cannot provide a credit or debit card belonging to someone else for their use.
+
+If you wish to pay for the rental car, but have someone else drive it, you can rent the vehicle in your name and add them as an additional driver. In order to add an additional driver, they would have to meet all of our additional driver requirements; those requirements can be found here:
+
+ </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question6">
+                        <h4 class="panel-title">
+                            <a href="#" class="question">I want to return my car early, is there a penalty to do so?</a>
+                        </h4>
+
+                    </div>
+                    <div id="question6" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p> We do not charge customers more for returning a car early, and you will only be charged for the days you had the vehicle (excluding prepaid reservations). If the location is closed when you try to return the vehicle or you are trying to return the vehicle to a different location, the following policy will apply:</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question7">
+                        <h4 class="panel-title">
+                            <a href="#" class="question">Will there be an additional charge if I am late returning the rental vehicle?</a>
+                        </h4>
+
+                    </div>
+                    <div id="question7" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>Great news! There is generally a 29 minute grace period for daily rentals.
+
+If the vehicle is returned within 2 ½ hours of the time it was rented on a subsequent day, additional hourly charges will apply. Hourly charges for your location and rental can be found on your rental contract.
+
+If you return the vehicle 2 ½ hours or more from the time it was rented on a subsequent day, you will be charged for an additional day of rental.
+
+ </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question8">
+                        <h4 class="panel-title">
+                            <a href="#" class="question">What is your pet policy?</a>
+                        </h4>
+
+                    </div>
+                    <div id="question8" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>Pets are allowed in rental vehicles. Customers need to keep pets crated and return their rental car in clean condition and free of pet hair to avoid cleaning/detailing fees. Service animals used by customers with disabilities are allowed in the vehicle without a carrier. </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default ">
+                    <div class="panel-heading accordion-toggle collapsed question-toggle" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question9">
+                        <h4 class="panel-title">
+                            <a href="#" class="question">Do I need to refuel the vehicle before returning? Can I pre-pay for fuel?</a>
+                        </h4>
+
+                    </div>
+                    <div id="question9" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>As a customer, you have a choice as to how you would like to pay for fuel.
+</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="contact_help">
+                <h4>You haven't found an answer to Your question?
+                    <a href = "contact.html"><span>Contact us by clicking here</span>.</a></h4></div> 
+        </div>
+        <!--END OF CONTENT-->
+
+        <!--FOOTER-->
+        <footer class="container-fluid">
+            <div class = "row">
+                <table id = "footer_table" class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"><a href="/contact.html">Contact</a></th>
+                            <th scope="col">Opening Hours</th>
+                            <th scope="col">Information</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>Company Name</p>
+                                <p>SomeStreet 15</p>
+                                <p>10-100 Gdańsk</p>
+                                <p>Poland</p>
+                                <p>(48)555-555-555</p>
+                                <p>contactmail@mail.com</p>
+                            </td>
+                            <td>
+                                <p>All spots are open from</p>
+                                <p>8:00 - 16:00</p>
+                                <p>Local time</p>
+                            </td>
+                            <td>
+                                <p><a href = "rules.html">Rules and Regulations</a></p>
+                                <p><a href = "faq.html">Frequently Asked Questions</a></p>
+                                <p><a href = "contact.html">Contact Form</a></p>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <p>Sample FAQ taken from https://www.enterprise.com/en/help/faqs.html#general and serves as a placeholder in University project. </p>
+            <p>No copyright infrigment intended, all copyright materials belong to their respective owners </p>
+        </footer>
+
+        <!--END OF FOOTER-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+             <script type='text/javascript' src="Resources/JavaScript/handlebars-v4.0.11.js"></script>
+        <script type='text/javascript' src="Resources/JavaScript/main.js"></script>
+    </body>
+</html>
+

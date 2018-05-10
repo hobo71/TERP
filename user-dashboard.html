@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Name</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="Resources/css/stylesheet.css" type="text/css">
+        <link rel="stylesheet" href="Resources/css/user-dashboard.css" type="text/css">
+    </head>
+    <body>
+        <!-- NAVBAR-->
+        <nav class="navbar navbar-fixed-top navbar-inverse " data-spy="affix" data-options="scrolltop:false">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarLinks">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-brand" href="index.html">Company Name</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarLinks">
+                    <ul class="nav navbar-nav">
+                        <li ><a href="index.html" >Home</a></li>
+                        <li ><a href="articles.html">News</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Rental
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="cars.html">Automobiles</a></li>
+                                <li><a href="items.html">Touristic Equipment</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="rules.html">Rules</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" id="log_buttons_container"><li><a href="register.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> </ul>
+                    <script id="logged_user_template" type= "text/x-handlebars-template">
+<li><a href="continue.html"><span class="glyphicon glyphicon-user"></span>Your profile</a></li>
+<li><a href="logout.html"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                    </script>
+                </div>
+            </div>
+        </nav>
+        <!--END OF NAVBAR-->
+
+        <!--CONTENT-->
+        <div id = "content">
+            <h3 id ="site_header"> Customer Service Dashboard </h3>
+                    
+            
+      
+            
+            
+            
+            <div id="main_buttons_container">
+               <button type="button" class="btn btn-default"  onclick="setCity('gdansk')">Gdansk</button>
+                <button type="button" class="btn btn-default"   onclick="setCity('krakow')">Krakow</button>
+                <button type="button" class="btn btn-default"  onclick="setCity('praga')">Praga</button>
+            </div>
+            <div id="city_that_was_chosen_container"><h3 id="city_that_was_chosen"></h3></div>
+            <div id="bonus_buttons_container" class="hidden">
+                
+                <button type="button" class="btn btn-default"  onclick="getCars()">Cars</button>
+                <button type="button" class="btn btn-default"   onclick="getItems()">Items</button>
+<!--                <button type="button" class="btn btn-default"  onclick="getUsers()">Users</button>-->
+                <button type="button" class="btn btn-default"  onclick="getCustomers()">Customers</button>
+
+            </div>
+            
+            <script id="category_buttons_template" type= "text/x-handlebars-template">
+{{#each this}}
+<button type="button" id = "{{this}}_button" class="btn btn-default" onclick="getStuff('{{this}}')">{{city}}</button>
+{{/each}}
+            </script>
+            <script id="position_buttons_template" type= "text/x-handlebars-template">
+{{#each this}}
+<button type="button" id = "{{name}}_button" class="btn btn-default" onclick="getPosition({{this.id}})">{{this.name}}</button>
+{{/each}}
+            </script>
+
+            <div id="table_container">
+
+
+
+
+
+
+            </div>
+            <div id="item_table_container">
+            </div>
+
+
+            <script id="items_table_template" type= "text/x-handlebars-template">
+<table class="table">
+    <thead>
+        <tr>
+<!--            <th scope="col">Id</th>-->
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Available</th>
+<!--            <th scope="col">Reserved By</th>-->
+            <th scope="col">Year</th>
+            <th scope="col">Item Type</th>
+            <th scope="col">Vendor</th>
+            <th scope="col">Model</th>
+<!--            <th scope="col">Branch ID</th>-->
+
+                </tr>
+                </thead>
+    <tbody>
+        {{#each this}}
+
+        <tr>
+<!--            <th scope="row">{{id}}</th>-->
+            <th scope="row">{{name}}</th>
+<!--            <td>{{name}}</td>-->
+            <td>{{price}}</td>
+            <td>{{available}}</td>
+            <td>{{reserved_by}}</td>
+            <td>{{year}}</td>
+            <td>{{item_type}}</td>
+            <td>{{vendor}}</td>
+            <td>{{model}}</td>
+<!--            <td>{{branch_id}}</td>-->
+<!--            <td><button type="button" id = "remove_item_{{id}}_button" class="btn btn-default" onclick="removeStuff('{{name}}','item', {{branch_id}})">DELETE</button></td>-->
+<!--                      <td><button type="button"  class="btn btn-default" data-toggle="confirmation" data-popout="true" data-placement="bottom" id = "remove_item_{{id}}_button" onclick="setDeletePropertiesFotCarsOrItems('{{name}}','item', {{branch_id}})">DELETE</button></td>-->
+<!--            <td><button type="button"  class="btn btn-default" data-toggle="confirmation" data-popout="true" data-placement="bottom" id = "{{name}}_remove_button"  onclick="setDeleteProperties('{{name}}', 'branch')">DELETE</button></td>-->
+            
+            
+            
+            
+            
+            
+            {{#if reserved_by}}
+<!--            <td><button type="button" id = "remove_item_{{id}}_button" class="btn btn-default" onclick="cancelReservation({{id}}, {{branch_id}}, '{{name}}', 'item'); ">Cancel Reservation</button></td>-->
+              <td><button  class="btn btn-default" data-toggle="confirmation" data-popout="true" data-placement="bottom" id = "remove_item_{{id}}_button"  onclick="setCancelPropertiesForCarsOrItems('{{name}}', 'item'); ">Cancel Reservation</button></td>
+            {{/if}}
+                </tr>
+
+        {{/each}}
+                </tbody>
+                </table>
+            </script>
+
+
+            <script id="cars_table_template" type= "text/x-handlebars-template">
+<table class="table">
+    <thead>
+        <tr>
+<!--            <th scope="col">Id</th>-->
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Available</th>
+            <th scope="col">Reserved By</th>
+            <th scope="col">Year</th>
+            <th scope="col">Car Type</th>
+            <th scope="col">Vendor</th>
+            <th scope="col">Model</th>
+            <th scope="col">Colour</th>
+            <th scope="col">Seats</th>
+            <th scope="col">Transmission</th>
+            <th scope="col">Drive</th>
+            <th scope="col">Fuel</th>
+<!--            <th scope="col">Engine Power</th>-->
+<!--            <th scope="col">Branch Id</th>-->
+
+                </tr>
+                </thead>
+    <tbody>
+        {{#each this}}
+
+        <tr>
+            <th scope="row">{{name}}</th>
+<!--            <td>{{name}}</td>-->
+            <td>{{price}}</td>
+            <td>{{available}}</td>
+            <td>{{reserved_by}}</td>
+            <td>{{year}}</td>
+            <td>{{car_type}}</td>
+            <td>{{vendor}}</td>
+            <td>{{model}}</td>
+            <td>{{colour}}</td>
+            <td>{{seats}}</td>
+            <td>{{transmission}}</td>
+            <td>{{drive}}</td>
+            <td>{{fuel}}</td>
+<!--            <td>{{engine_power}}</td>-->
+<!--            <td>{{branch_id}}</td>-->
+<!--            <td><button type="button"  class="btn btn-default" data-toggle="confirmation" data-popout="true" data-placement="bottom" id = "remove_car_{{id}}_button" onclick="setDeletePropertiesFotCarsOrItems('{{name}}','car', {{branch_id}})">DELETE</button></td>-->
+            {{#if reserved_by}}
+<!--            <td><button type="button" id = "remove_item_{{id}}_button" class="btn btn-default" onclick="cancelReservation({{id}}, {{branch_id}}, '{{name}}', 'car')">Cancel Reservation</button></td>-->
+            <td><button type="button"  class="btn btn-default" data-toggle="confirmation" data-popout="true" data-placement="bottom" id = "remove_item_{{id}}_button" onclick="setCancelPropertiesForCarsOrItems( '{{name}}', 'car')">Cancel Reservation</button></td>
+            {{/if}}
+
+                </tr>
+
+        {{/each}}
+                </tbody>
+                </table>
+            </script>
+
+
+            <script id="customers_table_template" type= "text/x-handlebars-template">
+<table class="table">
+    <thead>
+        <tr>
+            <!--                        <th scope="col">Id</th>-->
+            <th scope="col">Username</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+                </tr>
+                </thead>
+    <tbody>
+        {{#each this}}
+
+        <tr>
+            <!--            <th scope="row">{{id}}</th>-->
+            <td>{{username}}</td>
+            <td>{{first_name}}</td>
+            <td>{{last_name}}</td>
+            <td>{{email}}</td>
+            <td>{{phone}}</td>
+<!--            <td><button type="button"  class="btn btn-default" data-toggle="confirmation" data-popout="true" data-placement="bottom" id = "remove_user_{{id}}_button"  onclick="removeCustomerConfirmation('{{username}}')">DELETE</button></td>-->
+
+                </tr>
+
+        {{/each}}
+                </tbody>
+                </table>
+            </script>
+
+
+
+
+
+         
+            <!--END OF CONTENT-->
+        </div>
+
+
+        <!--END OF FOOTER-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-confirmation/1.0.7/bootstrap-confirmation.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+        <script type='text/javascript' src="Resources/JavaScript/handlebars-v4.0.11.js"></script>
+        <script type='text/javascript' src="Resources/JavaScript/main.js"></script>
+<!--        <script type='text/javascript' src="Resources/JavaScript/admin.js"></script>-->
+<!--        <script type='text/javascript' src="Resources/JavaScript/admin-validate.js"></script>-->
+        <script type='text/javascript' src="Resources/JavaScript/user.js"></script>
+<!--
+        <script type='text/javascript' src="Resources/JavaScript/admin-delete.js"></script>
+        <script type='text/javascript' src="Resources/JavaScript/admin-add.js"></script>
+        <script type='text/javascript' src="Resources/JavaScript/admin-update.js"></script>
+-->
+
+<!--                   <script type='text/javascript' src="https://unpkg.com/@divantespzoo/jquery-validation-polish/dist/jquery.validation.polish.js"></script>-->
+    </body>
+</html>

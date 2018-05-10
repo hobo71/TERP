@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Name</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="Resources/css/stylesheet.css" type="text/css">
+        <link rel="stylesheet" href="Resources/css/news.css" type="text/css">
+    </head>
+    <body>
+        <!-- NAVBAR-->
+        <nav class="navbar navbar-fixed-top navbar-inverse " data-spy="affix" data-options="scrolltop:false">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarLinks">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>                        
+                    </button>
+                    <a class="navbar-brand" href="index.html">Company Name</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbarLinks">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active"><a href="articles.html">News</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Rental
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="cars.html">Automobiles</a></li>
+                                <li><a href="items.html">Touristic Equipment</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="rules.html">Rules</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" id="log_buttons_container"><li><a href="register.html"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> </ul>
+                    <script id="logged_user_template" type= "text/x-handlebars-template">
+<li><a href="continue.html"><span class="glyphicon glyphicon-user"></span>Your profile</a></li>
+<li><a href="logout.html"><span class="glyphicon glyphicon-log-out"></span>Logout</a></li>
+                    </script>
+                </div>
+            </div>
+        </nav>
+        <!--END OF NAVBAR-->
+        <h3 id ="site_header">News</h3>
+        <!--CONTENT-->
+
+        <div id = "content"><!--START CONTENT-->
+
+            
+            <!--Article-->
+             <div  class="article-container">
+                <div class="article-header-container"><h3>Bird Paradise</h3></div>
+                <div class="article-image-container"> <img  src="Resources/images/bird-paradise.jpg" alt="Image of Bird Paradise" class="article_class">
+                </div>
+
+
+                <div class="article-body-container">
+             Nature Reserve Birds’ Paradise is located on the Gdansk Sobieszewo island, at the mouth of the Bold Vistula river. The reserve includes some bodys of water, for example Birds’ Paradise Lake. This place is one of the best trails in Gdansk. Track is about 6 kilometers long. You have to reserve about 5 hours walk back and forth including some breaks. The best time to go there is from April to October, then You can see a lot of interesting species of birds.
+                </div>
+            </div><!--end of article-->
+
+                             <div  class="article-container">
+                <div class="article-header-container"><h3>Bolechowicka Valley</h3></div>
+                <div class="article-image-container"> <img  src="Resources/images/bolechowicka-valley.jpg" alt="Image of Bolechowicka Valley" class="article_class">
+                </div>
+
+
+                <div class="article-body-container">
+               By visiting the Valley of the Bolechowicką worth extend route to the Valley of the Kobylańskiej with red cycling trail. The route is a loop. The beginning of the loop can be parking in pledged 18 hectares or Karniowicach. Loop length is ok. 7 km, and the walk does not exceed 4 hours. The trail is easy, you can meet families with prams.
+                </div>
+            </div><!--end of article-->
+                             <div  class="article-container">
+                <div class="article-header-container"><h3>Křivoklátsko Protected Landscape Area</h3></div>
+                <div class="article-image-container"> <img  src="Resources/images/krivoklatsko.jpg" alt="Image of Křivoklátsko" class="article_class">
+                </div>
+
+
+                <div class="article-body-container">
+                    Dense forests, massive rocks, mysterious castles and ruins as well as the wide and calm River Berounka flowing through the whole of the Křivoklátsko and Rakovnicko region – this is how you could describe one of the most beautiful regions lying on the border of Central, West and North Bohemia. Get to know this emerald gem of Europe – the Protected Landscape Area of Křivoklátsko – and discover the history of the Gothic Křivoklát Castle. In this region intersected by a great number of cycle paths and hiking routes, hops of the highest global quality and with a subtle aroma are also cultivated. 
+                </div>
+            </div><!--end of article-->
+                           
+
+
+
+        <!--okno-->
+        <div class="modal fade" id="popUpWindow">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- header -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title">Log In</h3>
+                    </div>
+
+                    <!-- body (form) -->
+                    <div class="modal-body">
+                        <form role="form">
+
+                            <div class="form-group">
+                                <label for="validate-email">E-mail Adress:</label>
+                                <div class="input-group" data-validate="email">
+                                    <input type="text" class="form-control" name="validate-email" id="validate-email" placeholder="name@example.com" required>
+                                    <span class="input-group-addon danger"><span class="glyphicon glyphicon-remove"></span></span>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="EnterPassword">Password:</label>
+                                <input type="password" name="EnterPassword" class="form-control" placeholder="Password">
+                            </div>
+                        </form>  
+                    </div>
+                    <!-- button -->
+                    <div class="modal-footer">
+                        <button id="SubmitButton"  class="btn btn-primary btn-block">Submit</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--END OF CONTENT-->
+
+        <!--FOOTER-->
+        <footer class="container-fluid">
+            <div class = "row">
+                <table id = "footer_table" class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"><a href="contact.html">Contact</a></th>
+                            <th scope="col">Opening Hours</th>
+                            <th scope="col">Information</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p>Company Name</p>
+                                <p>SomeStreet 15</p>
+                                <p>10-100 Gdańsk</p>
+                                <p>Poland</p>
+                                <p>(48)555-555-555</p>
+                                <p>contactmail@mail.com</p>
+                            </td>
+                            <td>
+                                <p>All spots are open from</p>
+                                <p>8:00 - 16:00</p>
+                                <p>Local time</p>
+                            </td>
+                            <td>
+                                <p><a href = "rules.html">Rules and Regulations</a></p>
+                                <p><a href = "faq.html">Frequently Asked Questions</a></p>
+                                <p><a href = "contact.html">Contact Form</a></p>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </footer>
+
+        <!--END OF FOOTER-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type='text/javascript' src="Resources/JavaScript/handlebars-v4.0.11.js"></script>
+        <script type='text/javascript' src="Resources/JavaScript/main.js"></script>
+    </body>
+</html>
